@@ -1,0 +1,57 @@
+﻿<Window x:Class="FeatureExtraction.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FeatureExtraction"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" Margin="0,0,0,10">
+            <TextBlock  FontWeight="Bold" Text="Text"/>
+            <Button HorizontalAlignment="Right" Command="{Binding LoadDonQuijoteCommand}" Content="Don Quijote"/>
+        </Grid>
+        
+        <TextBlock Grid.Row="0" Grid.Column="1" Margin="20,0,0,10" FontWeight="Bold" Text="Bag of Words (Term Frecuency)"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Margin="20,0,0,10" FontWeight="Bold" Text="Features"/>
+        
+        <TextBox 
+            Grid.Row="1" 
+            Grid.Column="0"
+            Name="textBox"
+            TextWrapping="Wrap"
+            AcceptsReturn="True"
+            Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"
+            VerticalScrollBarVisibility="Auto"/>
+
+        <DataGrid
+            Grid.Row="1"
+            Grid.Column="1" 
+            Margin="20,0,0,0"
+            ItemsSource="{Binding BagOfWordsResults}"
+            IsReadOnly="True"
+            HorizontalContentAlignment="Stretch">
+        </DataGrid>
+
+        <DataGrid
+            Grid.Row="2"
+            Grid.Column="2" 
+            Margin="20,0,0,0"
+            IsReadOnly="True"
+            ItemsSource="{Binding TfidfResults}"
+            HorizontalContentAlignment="Stretch">
+        </DataGrid>
+
+    </Grid>
+</Window>
